@@ -1,0 +1,9 @@
+.vscode/
+*.pyc
+.idea/
+__pycache__/
+.DS_Store
+env/
+.env/
+flask_session/
+
