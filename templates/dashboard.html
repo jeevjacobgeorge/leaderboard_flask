@@ -1,0 +1,48 @@
+{% extends "layout_admin.html" %}
+{% block body %}
+    <div class="container">
+        <h2>Present Scores</h2>
+        <table class="score-table">
+            <tr>
+                <th>Class</th>
+                <th>Points</th>
+            </tr>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row['code'] }}</td>
+                    <td>{{ row['points'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="container">
+        <h4>INCREASE/DECREASE POINTS</h4>
+        <form action="/add_points" method="post" class="points-form">
+        	<div class="points-form">
+        		{% for row in rows %}
+	                <input type="radio" id ="{{ row['code'] }}" name="class_code" value="{{ row['code'] }}" required> 
+	                <label for="{{ row['code'] }}">{{ row['code'] }}</label><br>
+	            {% endfor %}
+	            <label for="points">Enter points:</label>
+	            <input type="number" id="points" name="points" required>
+	            <button type="submit" name="inc" class="btn">Increase</button>
+	            <button type="submit" name="dec" class="btn">Decrease</button>
+	        </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <h4>Do you want to add a new class?</h4>
+        <form action="/add_class" method="post" class="add-class-form">
+            Enter class code:
+            <input name="class_code" type="text" placeholder="R5A" required>
+            <button type="submit" class="btn">Add</button>
+        </form>
+    </div>
+
+    <br><br>
+    <p class="user-info">You are logged in as {{ username }}</p>
+    <a href="/logout" class="btn">Logout</a>
+{% endblock %}
+

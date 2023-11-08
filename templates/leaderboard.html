@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+<script>
+    setTimeout(function() {
+        location.reload();
+    },6000); // 1000 milliseconds = 1 second
+</script>
+<h1>Leaderboard</h1>
+<table>
+    <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Points</th>
+    </tr>
+    <tr class="top-3">
+        <td class="first">1</td>
+        <td>{{ rows[0]['code'] }}</td>
+        <td>{{ rows[0]['points'] }}</td>
+    </tr>
+    <tr class="top-3">
+        <td class="second">2</td>
+        <td>{{ rows[1]['code'] }}</td>
+        <td>{{ rows[1]['points'] }}</td>
+    </tr>
+    <tr class="top-3">
+        <td class="third">3</td>
+ 		<td>{{ rows[2]['code'] }}</td>
+        <td>{{ rows[2]['points']}}</td>
+    </tr>
+  	{% for i in range(3,no) %}
+    <tr>
+        <td>{{i+1}}</td>
+ 		<td>{{ rows[i]['code'] }}</td>
+        <td>{{ rows[i]['points'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
